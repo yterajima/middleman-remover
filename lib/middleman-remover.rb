@@ -1,4 +1,4 @@
-require "middleman/remover/version"
+require "middleman-remover/version"
 
 module Middleman
   module Remover
