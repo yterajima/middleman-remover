@@ -1,7 +1,8 @@
+require "middleman-core"
 require "middleman-remover/version"
 
-module Middleman
-  module Remover
-    # Your code goes here...
-  end
+::Middleman::Extensions.register(:remover) do
+  require 'middleman-remover/extension'
+  ::Middleman::Remover::Extension
 end
+
