@@ -17,8 +17,15 @@ module Middleman
 
       def remove(targets, dir)
         targets.each do |target|
-          if File.exist?(File.join(dir, target))
-            File.unlink File.join(dir, target)
+          target = File.join(dir, target)
+
+          if File.file? target
+            if File.exist?(target)
+              File.unlink target
+              puts "      middleman-remover: #{target} is removed"
+            else
+              puts "      middleman-remover: #{target} is not exist"
+            end
           end
         end
       end
