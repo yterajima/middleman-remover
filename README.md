@@ -1,4 +1,4 @@
-# Middleman::Remover
+# middleman-remover
 
 [![Gem Version](https://badge.fury.io/rb/middleman-remover.svg)](http://badge.fury.io/rb/middleman-remover)
 [![Build Status](https://travis-ci.org/yterajima/middleman-remover.svg?branch=master)](https://travis-ci.org/yterajima/middleman-remover)
@@ -32,7 +32,8 @@ configure :build do
 end
 ```
 
-You can use by specifying the file path/direcotry path you want to delete the `:paths` option. `middleman-remover` will remove `build/empty`.
+`middleman-remover` will remove `build/empty`.  
+By specifying `:paths` option, you can remove files and directories from `build` directory.
 
 You can also specify the path using the wild card:
 
@@ -51,6 +52,8 @@ configure :build do
   activate :remover, :paths => %w(/dir)
 end
 ```
+
+`middleman-remover` will remove `build/dir/` directory.
 
 ## Contributing
 
