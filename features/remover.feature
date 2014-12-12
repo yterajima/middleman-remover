@@ -50,7 +50,7 @@ Feature: Middleman-Remover
     And a file named "config.rb" with:
       """
       configure :build do
-        activate :remover, :paths => %w(empty_dir)
+        activate :remover, :paths => %w(dir)
       end
       """
     And a successfully built app at "basic-app"
@@ -78,92 +78,92 @@ Feature: Middleman-Remover
     And a file named "config.rb" with:
       """
       configure :build do
-        activate :remover, :paths => %w(empty_dir)
+        activate :remover, :paths => %w(dir)
       end
       """
-    And a directory named "source/empty_dir"
-    And a file named "source/empty_dir/empty" with:
+    And a directory named "source/dir"
+    And a file named "source/dir/empty" with:
       """
       """
     And a successfully built app at "basic-app"
     When I cd to "build"
-    Then a directory named "empty_dir" should not exist
+    Then a directory named "dir" should not exist
 
   Scenario: Remove file with WILDCARD
     Given a fixture app "basic-app"
     And a file named "config.rb" with:
       """
       configure :build do
-        activate :remover, :paths => %w(empty_dir/*)
+        activate :remover, :paths => %w(dir/*)
       end
       """
-    And a directory named "source/empty_dir"
-    And a file named "source/empty_dir/empty" with:
+    And a directory named "source/dir"
+    And a file named "source/dir/empty" with:
       """
       """
-    And a file named "source/empty_dir/something.html" with:
+    And a file named "source/dir/something.html" with:
       """
       <html><head><title>something</title></head><body></body></html>
       """
     And a successfully built app at "basic-app"
     When I cd to "build"
-    Then a directory named "empty_dir" should exist
-    And a file named "empty_dir/empty" should not exist
-    And a file named "empty_dir/something.html" should not exist
+    Then a directory named "dir" should exist
+    And a file named "dir/empty" should not exist
+    And a file named "dir/something.html" should not exist
 
   Scenario: Remove file with WILDCARD and extension
     Given a fixture app "basic-app"
     And a file named "config.rb" with:
       """
       configure :build do
-        activate :remover, :paths => %w(empty_dir/*.html)
+        activate :remover, :paths => %w(dir/*.html)
       end
       """
-    And a directory named "source/empty_dir"
-    And a file named "source/empty_dir/empty" with:
+    And a directory named "source/dir"
+    And a file named "source/dir/empty" with:
       """
       """
-    And a file named "source/empty_dir/something.html" with:
+    And a file named "source/dir/something.html" with:
       """
       <html><head><title>something</title></head><body></body></html>
       """
     And a successfully built app at "basic-app"
     When I cd to "build"
-    Then a directory named "empty_dir" should exist
-    And a file named "empty_dir/empty" should exist
-    And a file named "empty_dir/something.html" should not exist
+    Then a directory named "dir" should exist
+    And a file named "dir/empty" should exist
+    And a file named "dir/something.html" should not exist
 
   Scenario: Remove Some files/Directories
     Given a fixture app "basic-app"
     And a file named "config.rb" with:
       """
       configure :build do
-        activate :remover, :paths => %w(empty_dir1/*.html empty_dir2/*.dat empty_dir3)
+        activate :remover, :paths => %w(dir1/*.html dir2/*.dat /dir3)
       end
       """
-    And a directory named "source/empty_dir1"
-    And a directory named "source/empty_dir2"
-    And a directory named "source/empty_dir3"
-    And a file named "source/empty_dir1/empty" with:
+    And a directory named "source/dir1"
+    And a directory named "source/dir2"
+    And a directory named "source/dir3"
+    And a file named "source/dir1/empty" with:
       """
       """
-    And a file named "source/empty_dir1/something.html" with:
+    And a file named "source/dir1/something.html" with:
       """
       <html><head><title>something</title></head><body></body></html>
       """
-    And a file named "source/empty_dir2/sample.dat" with:
+    And a file named "source/dir2/sample.dat" with:
       """
       sample
       """
-    And a file named "source/empty_dir3/empty" with:
+    And a file named "source/dir3/empty" with:
       """
       """
     And a successfully built app at "basic-app"
     When I cd to "build"
-    Then a directory named "empty_dir1" should exist
-    And a directory named "empty_dir2" should exist
-    And a directory named "empty_dir3" should not exist
-    And a file named "empty_dir1/empty" should exist
-    And a file named "empty_dir1/something.html" should not exist
-    And a file named "empty_dir2/sample.dat" should not exist
+    Then a directory named "dir1" should exist
+    And a directory named "dir2" should exist
+    And a directory named "dir3" should not exist
+    And a file named "dir1/empty" should exist
+    And a file named "dir1/something.html" should not exist
+    And a file named "dir2/sample.dat" should not exist
 
