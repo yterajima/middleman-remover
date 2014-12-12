@@ -1,3 +1,5 @@
+require 'FileUtils'
+
 module Middleman
   module Remover
     class Extension < ::Middleman::Extension
@@ -17,15 +19,13 @@ module Middleman
 
       def remove(targets, dir)
         targets.each do |target|
-          target = File.join(dir, target)
+          path = File.join(dir, target)
 
-          if File.file? target
-            if File.exist?(target)
-              File.unlink target
-              puts "      middleman-remover: #{target} is removed"
-            else
-              puts "      middleman-remover: #{target} is not exist"
-            end
+          if File.exist?(path)
+            FileUtils.rm_rf(path)
+            puts "      middleman-remover: #{path} is removed"
+          else
+            puts "      middleman-remover: #{path} is not exist"
           end
         end
       end
