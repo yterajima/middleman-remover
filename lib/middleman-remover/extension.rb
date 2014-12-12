@@ -20,9 +20,10 @@ module Middleman
       def remove(targets, dir)
         targets.each do |target|
           path = File.join(dir, target)
+          list = Dir.glob(path)
 
-          if File.exist?(path)
-            FileUtils.rm_rf(path)
+          if list.length > 0
+            FileUtils.rm_rf(list)
             puts "      middleman-remover: #{path} is removed"
           else
             puts "      middleman-remover: #{path} is not exist"
