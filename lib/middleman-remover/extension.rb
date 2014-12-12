@@ -3,23 +3,23 @@ require 'fileutils'
 module Middleman
   module Remover
     class Extension < ::Middleman::Extension
-      option :target, [], 'List of remove files/directories'
+      option :paths, [], 'List of remove files/directories paths'
 
       def initialize(app, options_hash = {}, &block)
         super
 
-        targets   = options.target
+        paths     = options.paths
         build_dir = app.build_dir
         ext       = self
 
         app.after_build do
-          ext.remove(targets, build_dir)
+          ext.remove(paths, build_dir)
         end
       end
 
-      def remove(targets, dir)
-        targets.each do |target|
-          path = File.join(dir, target)
+      def remove(paths, dir)
+        paths.each do |path|
+          path = File.join(dir, path)
           list = Dir.glob(path)
 
           if list.length > 0
@@ -33,3 +33,4 @@ module Middleman
     end
   end
 end
+

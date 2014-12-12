@@ -20,7 +20,7 @@ Feature: Middleman-Remover
     And a file named "config.rb" with:
       """
       configure :build do
-        activate :remover, :target => %w(empty)
+        activate :remover, :paths => %w(empty)
       end
       """
     And a file named "source/empty" with:
@@ -37,7 +37,7 @@ Feature: Middleman-Remover
     And a file named "config.rb" with:
       """
       configure :build do
-        activate :remover, :target => %w(empty)
+        activate :remover, :paths => %w(empty)
       end
       """
     And a successfully built app at "basic-app"
@@ -51,7 +51,7 @@ Feature: Middleman-Remover
     And a file named "config.rb" with:
       """
       configure :build do
-        activate :remover, :target => %w(empty_dir)
+        activate :remover, :paths => %w(empty_dir)
       end
       """
     And a successfully built app at "basic-app"
@@ -65,7 +65,7 @@ Feature: Middleman-Remover
     And a file named "config.rb" with:
       """
       configure :build do
-        activate :remover, :target => %w(empty)
+        activate :remover, :paths => %w(empty)
       end
       """
     And a file named "source/empty" with:
@@ -80,7 +80,7 @@ Feature: Middleman-Remover
     And a file named "config.rb" with:
       """
       configure :build do
-        activate :remover, :target => %w(empty_dir)
+        activate :remover, :paths => %w(empty_dir)
       end
       """
     And a directory named "source/empty_dir"
@@ -97,7 +97,7 @@ Feature: Middleman-Remover
     And a file named "config.rb" with:
       """
       configure :build do
-        activate :remover, :target => %w(empty_dir/*)
+        activate :remover, :paths => %w(empty_dir/*)
       end
       """
     And a directory named "source/empty_dir"
@@ -119,7 +119,7 @@ Feature: Middleman-Remover
     And a file named "config.rb" with:
       """
       configure :build do
-        activate :remover, :target => %w(empty_dir/*.html)
+        activate :remover, :paths => %w(empty_dir/*.html)
       end
       """
     And a directory named "source/empty_dir"
