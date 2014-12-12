@@ -24,9 +24,9 @@ module Middleman
 
           if list.length > 0
             FileUtils.rm_rf(list)
-            puts "      middleman-remover: #{path} is removed"
+            puts "   middleman-remover: #{path} is removed"
           else
-            puts "      middleman-remover: #{path} is not exist"
+            puts "   middleman-remover: #{path} is not exist"
           end
         end
       end
