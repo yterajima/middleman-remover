@@ -42,8 +42,7 @@ Feature: Middleman-Remover
       """
     And a successfully built app at "basic-app"
     When I cd to "build"
-    Then a file named "empty" should not exist
-    And the output should contain "middleman-remover:"
+    Then the output should contain "middleman-remover:"
     And the output should contain "is not exist"
 
   Scenario: Directory not exist Message
@@ -56,8 +55,7 @@ Feature: Middleman-Remover
       """
     And a successfully built app at "basic-app"
     When I cd to "build"
-    Then a file named "empty" should not exist
-    And the output should contain "middleman-remover:"
+    Then the output should contain "middleman-remover:"
     And the output should contain "is not exist"
 
   Scenario: Remove file
@@ -90,7 +88,6 @@ Feature: Middleman-Remover
     And a successfully built app at "basic-app"
     When I cd to "build"
     Then a directory named "empty_dir" should not exist
-    And a file named "empty_dir/empty" should not exist
 
   Scenario: Remove file with WILDCARD
     Given a fixture app "basic-app"
@@ -135,4 +132,38 @@ Feature: Middleman-Remover
     Then a directory named "empty_dir" should exist
     And a file named "empty_dir/empty" should exist
     And a file named "empty_dir/something.html" should not exist
+
+  Scenario: Remove Some files/Directories
+    Given a fixture app "basic-app"
+    And a file named "config.rb" with:
+      """
+      configure :build do
+        activate :remover, :paths => %w(empty_dir1/*.html empty_dir2/*.dat empty_dir3)
+      end
+      """
+    And a directory named "source/empty_dir1"
+    And a directory named "source/empty_dir2"
+    And a directory named "source/empty_dir3"
+    And a file named "source/empty_dir1/empty" with:
+      """
+      """
+    And a file named "source/empty_dir1/something.html" with:
+      """
+      <html><head><title>something</title></head><body></body></html>
+      """
+    And a file named "source/empty_dir2/sample.dat" with:
+      """
+      sample
+      """
+    And a file named "source/empty_dir3/empty" with:
+      """
+      """
+    And a successfully built app at "basic-app"
+    When I cd to "build"
+    Then a directory named "empty_dir1" should exist
+    And a directory named "empty_dir2" should exist
+    And a directory named "empty_dir3" should not exist
+    And a file named "empty_dir1/empty" should exist
+    And a file named "empty_dir1/something.html" should not exist
+    And a file named "empty_dir2/sample.dat" should not exist
 
