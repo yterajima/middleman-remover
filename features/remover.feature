@@ -29,8 +29,27 @@ Feature: Middleman-Remover
     And a successfully built app at "basic-app"
     When I cd to "build"
     Then a file named "empty" should not exist
-    And the output should contain "middleman-remover:"
-    And the output should contain "is removed"
+    And the output should contain "== middleman-remover:"
+    And the output should contain "is removed =="
+
+  Scenario: Removed Message using block
+    Given a fixture app "basic-app"
+    And a file named "config.rb" with:
+      """
+      configure :build do
+        activate :remover do |r|
+          r.paths = %w(empty)
+        end
+      end
+      """
+    And a file named "source/empty" with:
+      """
+      """
+    And a successfully built app at "basic-app"
+    When I cd to "build"
+    Then a file named "empty" should not exist
+    And the output should contain "== middleman-remover:"
+    And the output should contain "is removed =="
 
   Scenario: File not exist Message
     Given a fixture app "basic-app"
@@ -42,8 +61,8 @@ Feature: Middleman-Remover
       """
     And a successfully built app at "basic-app"
     When I cd to "build"
-    Then the output should contain "middleman-remover:"
-    And the output should contain "is not exist"
+    Then the output should contain "== middleman-remover:"
+    And the output should contain "is not exist =="
 
   Scenario: Directory not exist Message
     Given a fixture app "basic-app"
@@ -55,8 +74,8 @@ Feature: Middleman-Remover
       """
     And a successfully built app at "basic-app"
     When I cd to "build"
-    Then the output should contain "middleman-remover:"
-    And the output should contain "is not exist"
+    Then the output should contain "== middleman-remover:"
+    And the output should contain "is not exist =="
 
   Scenario: Remove file
     Given a fixture app "basic-app"

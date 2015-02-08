@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
   spec.required_ruby_version = '>=1.9.3'
 
-  spec.add_runtime_dependency "middleman", "~>3.3"
+  spec.add_runtime_dependency "middleman", "~> 3.3"
 
   spec.add_development_dependency "cucumber", "~> 1.3"
   spec.add_development_dependency "aruba", "~> 0.6"
