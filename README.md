@@ -45,6 +45,8 @@ end
 
 `middleman-remover` will remove `build/dir/*.html` and `build/.DS_Store`.
 
+__NOTICE:__ From v4.beta, Middleman remove `build/dir` if that is empty.
+
 Also you can remove directory:
 
 ```ruby
