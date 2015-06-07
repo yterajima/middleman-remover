@@ -126,7 +126,7 @@ Feature: Middleman-Remover
       """
     And a successfully built app at "basic-app"
     When I cd to "build"
-    Then a directory named "dir" should exist
+    Then a directory named "dir" should not exist
     And a file named "dir/empty" should not exist
     And a file named "dir/something.html" should not exist
 
@@ -180,7 +180,7 @@ Feature: Middleman-Remover
     And a successfully built app at "basic-app"
     When I cd to "build"
     Then a directory named "dir1" should exist
-    And a directory named "dir2" should exist
+    And a directory named "dir2" should not exist
     And a directory named "dir3" should not exist
     And a file named "dir1/empty" should exist
     And a file named "dir1/something.html" should not exist
