@@ -9,7 +9,7 @@ module Middleman
       def initialize(app, options_hash = {}, &block)
         super
         paths     = options.paths
-        build_dir = app.build_dir
+        build_dir = app.config.build_dir
         extension = self
 
         app.after_build do

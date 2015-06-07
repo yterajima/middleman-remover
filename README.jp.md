@@ -45,6 +45,8 @@ end
 
 この例の場合, `middleman-remover` は `build/dir/*.html` と `build/.DS_Store` を削除します。
 
+__NOTICE:__ v4.beta から `build/dir` の中身が空の場合には `build/dir` 自体も削除されます。
+
 ディレクトリを削除することもできます:
 
 ```ruby
